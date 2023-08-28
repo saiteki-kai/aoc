@@ -1,0 +1,10 @@
+[package]
+name = "adventofcode-2022"
+version = "0.1.0"
+edition = "2021"
+repository = "https://github.com/saiteki-kai/adventofcode-2022"
+license = "MIT"
+
+
+[dependencies]
+clap = { version = "4.3.23", features = ["derive"] }
