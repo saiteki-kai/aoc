@@ -1,3 +1,5 @@
-# adventofcode-2022
+# Advent of Code
 
-Learning Rust through [Advent of Code](https://adventofcode.com/) challenges
+Learning through [Advent of Code](https://adventofcode.com/) challenges
+
+- [2022](2022) - Rust
