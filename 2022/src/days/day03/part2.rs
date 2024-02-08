@@ -5,7 +5,7 @@
 use std::collections::{HashMap, HashSet};
 
 fn get_badge_priority(input: &str) -> u32 {
-    let lines = input.lines().into_iter().collect::<Vec<&str>>();
+    let lines = input.lines().collect::<Vec<&str>>();
 
     let priority_map: HashMap<char, u8> = (('a'..='z').chain('A'..='Z'))
         .zip(1..=52)
@@ -22,7 +22,7 @@ fn get_group_badge(group: Vec<&str>) -> char {
     let item_types = group
         .iter()
         .map(|x| x.chars().collect::<Vec<char>>())
-        .map(|x| HashSet::<char>::from_iter(x))
+        .map(HashSet::<char>::from_iter)
         .collect::<Vec<HashSet<char>>>();
 
     let badge: HashSet<char> = item_types[0]

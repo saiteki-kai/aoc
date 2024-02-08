@@ -38,5 +38,5 @@ pub fn compute_round_score(s: Shape, o: Outcome) -> u32 {
         Outcome::Win => 6,
     };
 
-    return shape_score + outcome_score;
+    shape_score + outcome_score
 }

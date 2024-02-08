@@ -14,7 +14,7 @@ fn get_opponent_shape(code: &str) -> Shape {
 }
 
 fn get_player_shape(oppenent_shape: Shape, outcome: Outcome) -> Shape {
-    let shape = match (outcome, oppenent_shape) {
+    match (outcome, oppenent_shape) {
         (Outcome::Win, Shape::Rock) => Shape::Paper,
         (Outcome::Win, Shape::Paper) => Shape::Scissor,
         (Outcome::Win, Shape::Scissor) => Shape::Rock,
@@ -22,9 +22,7 @@ fn get_player_shape(oppenent_shape: Shape, outcome: Outcome) -> Shape {
         (Outcome::Lost, Shape::Paper) => Shape::Rock,
         (Outcome::Lost, Shape::Scissor) => Shape::Paper,
         _ => oppenent_shape, // draw
-    };
-
-    return shape;
+    }
 }
 
 fn get_outcome(code: &str) -> Outcome {
@@ -44,17 +42,17 @@ fn map_shapes(input: &str) -> (Shape, Shape, Outcome) {
     let shape1 = get_opponent_shape(s1);
     let shape2 = get_player_shape(shape1, outcome);
 
-    return (shape1, shape2, outcome);
+    (shape1, shape2, outcome)
 }
 
 fn get_rounds() -> Vec<(Shape, Shape, Outcome)> {
     let rounds = include_str!("../../../inputs/day02")
         .trim()
-        .split("\n")
+        .split('\n')
         .map(map_shapes)
         .collect();
 
-    return rounds;
+    rounds
 }
 
 fn compute_total_score(rounds: Vec<(Shape, Shape, Outcome)>) -> u32 {
@@ -66,7 +64,7 @@ fn compute_total_score(rounds: Vec<(Shape, Shape, Outcome)>) -> u32 {
         total_score += round_score;
     }
 
-    return total_score;
+    total_score
 }
 
 pub fn solve() {

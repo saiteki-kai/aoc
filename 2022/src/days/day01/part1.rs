@@ -10,7 +10,7 @@ pub fn get_input() -> String {
     let filepath: &Path = Path::new("./inputs/day01");
     let file: String = fs::read_to_string(filepath).expect("Error while reading the file.");
 
-    return file;
+    file
 }
 
 fn solve_v1() {
@@ -43,7 +43,7 @@ fn solve_v2() {
 
     for (i, elf) in elves.enumerate() {
         let sum = elf
-            .split("\n")
+            .split('\n')
             .map(|x| x.trim().parse::<u32>().unwrap())
             .sum::<u32>();
 

@@ -22,17 +22,17 @@ fn map_shapes(input: &str) -> (Shape, Shape) {
     let shape1 = get_shape(s1);
     let shape2 = get_shape(s2);
 
-    return (shape1, shape2);
+    (shape1, shape2)
 }
 
 fn get_rounds() -> Vec<(Shape, Shape)> {
     let rounds = include_str!("../../../inputs/day02")
         .trim()
-        .split("\n")
+        .split('\n')
         .map(map_shapes)
         .collect();
 
-    return rounds;
+    rounds
 }
 
 fn compute_total_score(rounds: Vec<(Shape, Shape)>) -> u32 {
@@ -45,7 +45,7 @@ fn compute_total_score(rounds: Vec<(Shape, Shape)>) -> u32 {
         total_score += round_score;
     }
 
-    return total_score;
+    total_score
 }
 
 pub fn solve() {

@@ -6,11 +6,11 @@ use super::part1::get_input;
 
 fn get_elf_calories(elf: &str) -> u32 {
     let elf_calories = elf
-        .split("\n")
+        .split('\n')
         .map(|x| x.trim().parse::<u32>().unwrap())
         .sum::<u32>();
 
-    return elf_calories;
+    elf_calories
 }
 
 fn part2(elves: std::str::Split<'_, &str>) -> u32 {
