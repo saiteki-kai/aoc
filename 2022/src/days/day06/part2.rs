@@ -15,13 +15,14 @@ pub fn solve() {
 #[cfg(test)]
 mod tests {
     use super::find_marker;
+    use test_case::test_case;
 
-    #[test]
-    fn test_examples() {
-        assert_eq!(find_marker("mjqjpqmgbljsphdztnvjfqwrcgsmlb", 14), 19);
-        assert_eq!(find_marker("bvwbjplbgvbhsrlpgdmjqwftvncz", 14), 23);
-        assert_eq!(find_marker("nppdvjthqldpwncqszvftbrmjlhg", 14), 23);
-        assert_eq!(find_marker("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", 14), 29);
-        assert_eq!(find_marker("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 14), 26);
+    #[test_case("mjqjpqmgbljsphdztnvjfqwrcgsmlb", 19)]
+    #[test_case("bvwbjplbgvbhsrlpgdmjqwftvncz", 23)]
+    #[test_case("nppdvjthqldpwncqszvftbrmjlhg", 23)]
+    #[test_case("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", 29)]
+    #[test_case("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 26)]
+    fn test_find_marker(input: &str, index: usize) {
+        assert_eq!(find_marker(input, 14), index);
     }
 }
