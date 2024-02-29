@@ -46,6 +46,10 @@ fn main() {
             days::day07::part1::solve();
             days::day07::part2::solve()
         }
+        8 => {
+            days::day08::part1::solve();
+            days::day08::part2::solve()
+        }
         _ => println!("Please specify a number between 1 and 25."),
     }
 }
