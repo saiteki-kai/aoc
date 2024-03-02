@@ -4,6 +4,8 @@
 
 use std::fmt;
 
+use super::shared::{parse_moves, Direction, Point};
+
 pub fn solve() {
     let input: &str = include_str!("../../../inputs/day09");
 
@@ -11,23 +13,6 @@ pub fn solve() {
     let count = count_tail_positions(moves);
 
     println!("{}", count);
-}
-
-fn parse_moves(input: &str) -> Vec<(Direction, i32)> {
-    input
-        .lines()
-        .map(|line| {
-            let (dir, step) = line.trim().split_once(' ').unwrap();
-            let direction = match dir {
-                "U" => Direction::U,
-                "L" => Direction::L,
-                "R" => Direction::R,
-                _ => Direction::D,
-            };
-
-            (direction, step.parse::<i32>().unwrap())
-        })
-        .collect()
 }
 
 fn count_tail_positions(moves: Vec<(Direction, i32)>) -> usize {
@@ -50,62 +35,6 @@ fn count_tail_positions(moves: Vec<(Direction, i32)>) -> usize {
 
     visited.len()
 }
-
-#[derive(Clone, Debug)]
-pub enum Direction {
-    U,
-    R,
-    L,
-    D,
-}
-
-#[derive(Clone, Copy, PartialEq)]
-struct Point {
-    x: i32,
-    y: i32,
-}
-
-impl Point {
-    fn new(x: i32, y: i32) -> Point {
-        Point { x, y }
-    }
-
-    fn move_to(&mut self, direction: &Direction) {
-        match direction {
-            Direction::R => self.x += 1,
-            Direction::L => self.x -= 1,
-            Direction::D => self.y += 1,
-            Direction::U => self.y -= 1,
-        }
-    }
-
-    fn move_diagonal_to(&mut self, direction_x: &Direction, direction_y: &Direction) {
-        self.move_to(direction_x);
-        self.move_to(direction_y);
-    }
-
-    fn gradient(point1: &Point, point2: &Point) -> Point {
-        Point {
-            x: point2.x - point1.x,
-            y: point2.y - point1.y,
-        }
-    }
-
-    fn distance_to(&self, point: &Point) -> i32 {
-        (self.x - point.x).abs().max((self.y - point.y).abs())
-    }
-
-    fn is_adjacent_to(&self, point: &Point) -> bool {
-        self.distance_to(point) <= 1
-    }
-}
-
-impl fmt::Display for Point {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "({}, {})", self.x, self.y)
-    }
-}
-
 struct Rope {
     head: Point,
     tail: Point,
