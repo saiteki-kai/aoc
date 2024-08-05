@@ -54,6 +54,11 @@ fn main() {
             days::day09::part1::solve();
             days::day09::part2::solve()
         }
+        12 => {
+            days::day12::part1::solve();
+            days::day12::part2::solve();
+            days::day12::visualization::main();
+        }
         _ => println!("Please specify a number between 1 and 25."),
     }
 }
