@@ -1,4 +1,4 @@
-// https://adventofcode.com/2022/8
+// https://adventofcode.com/2022/day/8
 //
 // Day 8: Treetop Tree House - Part 1
 

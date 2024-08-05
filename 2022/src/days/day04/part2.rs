@@ -1,4 +1,4 @@
-// https://adventofcode.com/2022/4
+// https://adventofcode.com/2022/day/4
 //
 //  Day 4: Camp Cleanup - Part 2
 

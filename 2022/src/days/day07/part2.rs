@@ -1,4 +1,4 @@
-// https://adventofcode.com/2022/7
+// https://adventofcode.com/2022/day/7
 //
 // Day 7: No Space Left On Device - Part 2
 
