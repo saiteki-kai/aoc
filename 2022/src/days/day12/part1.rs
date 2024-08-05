@@ -20,9 +20,15 @@ fn random_path(heatmap: &HeatMap) {
 
     println!("{}", start.value);
 
+    let mut counter = 0;
+
     while !current_square.is_end() {
         let dests = heatmap.possible_destinations(&current_square);
         println!("{} possible destinations", dests.len());
+
+        for d in &dests {
+            println!("{} -> {}", current_square.value, d.value);
+        }
 
         print!("{}: ", current_square.value);
         if current_square.value == 'd' {
@@ -42,7 +48,11 @@ fn random_path(heatmap: &HeatMap) {
                 .choose_weighted(&mut rand::thread_rng(), |d| d.get_elevation().unwrap_or(0))
                 .unwrap(),
         );
+
+        counter += 1;
     }
+
+    println!("{} moves", counter);
 }
 
 #[cfg(test)]
@@ -85,7 +95,7 @@ mod tests {
         assert_eq!(start.row, 0);
         assert_eq!(start.col, 0);
 
-        assert_eq!(heatmap.neighbour(start).len(), 2);
+        assert_eq!(heatmap.neighbours(start).len(), 2);
         assert_eq!(heatmap.possible_destinations(start).len(), 2);
     }
 

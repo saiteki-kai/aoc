@@ -40,7 +40,7 @@ impl HeatMap {
         self.squares.get(index)
     }
 
-    pub fn neighbour(&self, square: &Square) -> Vec<Square> {
+    pub fn neighbours(&self, square: &Square) -> Vec<Square> {
         let positions: Vec<(usize, usize)> = vec![
             (Some(square.row), square.col.checked_sub(1)),
             (Some(square.row), square.col.checked_add(1)),
@@ -49,7 +49,6 @@ impl HeatMap {
         ]
         .into_iter()
         .filter_map(|(a, b)| {
-            println!("{:#?} {:#?}", a, b);
             if let (Some(a), Some(b)) = (a, b) {
                 Some((a, b))
             } else {
@@ -66,12 +65,14 @@ impl HeatMap {
     }
 
     pub fn possible_destinations(&self, square: &Square) -> Vec<Square> {
-        self.neighbour(square)
+        self.neighbours(square)
             .iter()
             .filter(|s| {
-                (s.get_elevation().expect("bad value") as i8
-                    - square.get_elevation().expect("bad value") as i8)
-                    <= 1
+                let level_diff = s.get_elevation().expect("bad value") as i8
+                    - square.get_elevation().expect("bad value") as i8;
+
+                // next level || same level
+                level_diff == 1 || level_diff == 0
             })
             .cloned()
             .collect()
