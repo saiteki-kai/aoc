@@ -68,7 +68,11 @@ impl HeatMap {
     pub fn possible_destinations(&self, square: &Square) -> Vec<Square> {
         self.neighbour(square)
             .iter()
-            .filter(|s| s.get_elevation().unwrap_or(0) - square.get_elevation().unwrap_or(0) <= 1)
+            .filter(|s| {
+                (s.get_elevation().expect("bad value") as i8
+                    - square.get_elevation().expect("bad value") as i8)
+                    <= 1
+            })
             .cloned()
             .collect()
     }
@@ -123,7 +127,7 @@ impl Square {
 
     pub fn get_elevation(&self) -> Option<u8> {
         match self.value {
-            'S' => Some(1),               // start
+            'S' => Some(0),               // start
             'E' => Some(b'z' - b'a' + 1), // end
             'a'..='z' => Some(self.value as u8 - b'a' + 1),
             _ => None, // error
